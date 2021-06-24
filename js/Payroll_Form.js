@@ -95,6 +95,33 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
 })
 
+// UC12_4
+
+const save =() => {
+    try {
+        let employeePayrollData = createEmployeePayroll();
+        createAndUpdateStorege(EmployeePayrollData);
+    }
+    catch(e)
+    {
+        return;
+    }
+}
+
+function createAndUpdateStorege(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+
+    if(employeePayrollList != undefined){
+        employeePayrollList.push(employeePayrollData);
+    }
+    else {
+        employeePayrollList = [employeePayrollData]
+    }
+    alert(employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
+    }
+
+
 const save = () => {
     try{
         let employeePayrollData = createEmployeePayroll();
@@ -103,6 +130,8 @@ const save = () => {
         return;
     }
 }
+
+// UC4 store in local storage
 const createEmployeePayroll = () => {
     let employeePayrollData = new EmployeePayrollData();
     try{
@@ -142,4 +171,5 @@ const getInputElementValue = (id) => {
     let value = document.getElementById(id).value;
     return value;
 }
+
 
